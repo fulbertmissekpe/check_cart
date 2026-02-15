@@ -7,7 +7,7 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.f3kip6r.mongodb.net/${DB_NAME}?retryWrites=true&w=majority&appName=Cluster0
+      uri: ${MONGO_URI}
 
   mail:
     host: ${MAIL_HOST}
