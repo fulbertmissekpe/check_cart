@@ -1,0 +1,16 @@
+# Env files
+.env
+.env.*
+
+# Logs
+*.log
+
+# Build
+/target
+
+# IDE
+.idea
+.vscode
+
+# OS
+.DS_Store

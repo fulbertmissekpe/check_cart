@@ -1,0 +1,31 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+
+  application:
+    name: check-card
+
+  data:
+    mongodb:
+      uri: mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.f3kip6r.mongodb.net/${DB_NAME}?retryWrites=true&w=majority&appName=Cluster0
+
+  mail:
+    host: ${MAIL_HOST}
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+application:
+  security:
+    jwt:
+      secret: ${JWT_SECRET}
+      expiration-ms: 3600000
+
+server:
+  port: 8081
