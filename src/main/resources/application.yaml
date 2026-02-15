@@ -28,4 +28,4 @@ application:
       expiration-ms: 3600000
 
 server:
-  port: 8081
+  port: ${PORT:8080}
