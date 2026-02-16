@@ -7,6 +7,7 @@ spring:
     mongodb:
       uri: ${MONGO_URI}
 
+
   mail:
     host: ${MAIL_HOST}
     port: 587
