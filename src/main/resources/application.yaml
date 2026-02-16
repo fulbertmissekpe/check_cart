@@ -6,8 +6,8 @@ spring:
     name: check-card
 
   data:
-    mongodb:
-      uri: mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.f3kip6r.mongodb.net/checkcard?retryWrites=true&w=majority
+  mongodb:
+    uri: mongodb+srv://fulbertmissekpe1_db_user:Fulbert05@cluster0.f3kip6r.mongodb.net/checkcard?retryWrites=true&w=majority&appName=Cluster0
 
       
   mail:
