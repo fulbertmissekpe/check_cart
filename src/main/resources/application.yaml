@@ -1,13 +1,14 @@
 spring:
+  config:
+    import: optional:file:.env[.properties]
 
   application:
     name: check-card
 
   data:
     mongodb:
-      uri: ${MONGO_URI}
-
-
+      uri: mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.f3kip6r.mongodb.net/?appName=Cluster0
+      
   mail:
     host: ${MAIL_HOST}
     port: 587
