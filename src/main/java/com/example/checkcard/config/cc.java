@@ -8,11 +8,12 @@ import jakarta.annotation.PostConstruct;
 @Component
 public class cc {
 
-    @Value("${MONGO_URI:NOT_FOUND}")
-    private String mongoUri;
-
+    @Value("${spring.data.mongodb.uri:NOT_FOUND}")
+    private String uri;
+    
     @PostConstruct
-    public void print() {
-        System.out.println(">>> MONGO_URI = " + mongoUri);
+    public void checkMongo() {
+        System.out.println("Mongo URI = " + uri);
     }
+    
 }
