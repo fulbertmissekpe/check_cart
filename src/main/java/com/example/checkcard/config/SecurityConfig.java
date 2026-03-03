@@ -50,7 +50,7 @@ public class SecurityConfig {
         public CorsConfigurationSource corsConfigurationSource() {
             CorsConfiguration configuration = new CorsConfiguration();
             configuration.setAllowedOrigins(Arrays.asList( 
-                        "http:       ocalhost:4200",
+                        "http:localhost:4200",
                         "https://checkcart.vercel.app"
                 ));
             configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
@@ -61,26 +61,4 @@ public class SecurityConfig {
             source.registerCorsConfiguration("/**", configuration);
             return source;
         }
-//     @Bean
-//     public CorsConfigurationSource corsConfigurationSource() {
-//         CorsConfiguration configuration = new CorsConfiguration();
-
-//         configuration.setAllowedOriginPatterns(Arrays.asList("*")); // IMPORTANT
-
-//         configuration.setAllowedMethods(Arrays.asList(
-//                 "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"
-//         ));
-
-//         configuration.setAllowedHeaders(Arrays.asList(
-//                 "Authorization", "Content-Type", "X-Requested-With"
-//         ));
-
-//         configuration.setExposedHeaders(Collections.singletonList("Authorization"));
-//         configuration.setAllowCredentials(true);
-
-//         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//         source.registerCorsConfiguration("/**", configuration);
-//         return source;
-//     }
-
 }
