@@ -12,6 +12,8 @@ import com.example.checkcard.utils.mappers.StudentMapper;
 import com.example.checkcard.utils.mappers.StudentWithSoldeMapper;
 import com.example.checkcard.web.dto.responses.StudentWithSolde;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,7 @@ import java.util.*;
 import static com.example.checkcard.utils.mappers.Tools.getCellValue;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
@@ -33,7 +36,6 @@ public class StudentServiceImpl implements StudentService {
     private final HistoricalRepository historicalRepository;
     @Override
     public Map<String, Object> saveAll(MultipartFile studentsFile, String ecole) {
-	 System.out.println("je suis 1");
         List<Student> students = new ArrayList<>();
         HashMap<String, Object> response = new HashMap<>();
         String fileName = studentsFile.getOriginalFilename();
@@ -50,10 +52,9 @@ public class StudentServiceImpl implements StudentService {
                 students.add(student);
             }
             if (studentRepository.findByEcole(ecole) != null) studentRepository.deleteAllByEcole(ecole);
-         System.out.println("je suisa");
-	 System.out.println(students.size());
-	 List<Student> studentsToSave = sendEmail(students);
-             studentRepository.saveAll(students);
+	
+	        List<Student> studentsToSave = sendEmail(students);
+            studentRepository.saveAll(studentsToSave);
             workbook.close();
             response.put("message", "Successfully uploaded: " + fileName);
             historicalRepository.save(Historical.builder()
@@ -83,6 +84,9 @@ public class StudentServiceImpl implements StudentService {
         List<Solde> soldes = soldeRepository.findAllByMatricule(matricule);
         List<Student> students = studentRepository.findAllByMatricule(matricule);
         response.put("message", "ok");
+        log.info(String.valueOf(students.size()));
+        log.info(String.valueOf(soldes.size()));
+        log.info("solde et etudiant dispo");
         if (soldes.isEmpty()|| students.isEmpty()) {
             response.put("message", "Student not found ");
             return response;
@@ -103,7 +107,6 @@ public class StudentServiceImpl implements StudentService {
         return response;
     }
     private List<Student> sendEmail(List<Student> students) {
- 	System.out.println("je suis la");
         students.forEach(
                 s -> {
 		 System.out.println(s);
@@ -120,7 +123,7 @@ public class StudentServiceImpl implements StudentService {
                                     qr,
                                     logo
                             );
-				 System.out.println("je suis la ENF");
+				
                             emailService.sendBadgeByEmail(
                                     "fulbert.missekpe@ism.edu.sn",
                                     s.getNomComplet(),
