@@ -51,7 +51,8 @@ public class SecurityConfig {
             CorsConfiguration configuration = new CorsConfiguration();
             configuration.setAllowedOrigins(Arrays.asList( 
                         "http:localhost:4200",
-                        "https://checkcart.vercel.app"
+                        "https://checkcart.vercel.app",
+			"https://check-card.groupeism.sn"
                 ));
             configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
             configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Requested-With"));

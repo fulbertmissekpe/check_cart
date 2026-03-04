@@ -33,6 +33,7 @@ public class StudentServiceImpl implements StudentService {
     private final HistoricalRepository historicalRepository;
     @Override
     public Map<String, Object> saveAll(MultipartFile studentsFile, String ecole) {
+	 System.out.println("je suis 1");
         List<Student> students = new ArrayList<>();
         HashMap<String, Object> response = new HashMap<>();
         String fileName = studentsFile.getOriginalFilename();
@@ -49,7 +50,9 @@ public class StudentServiceImpl implements StudentService {
                 students.add(student);
             }
             if (studentRepository.findByEcole(ecole) != null) studentRepository.deleteAllByEcole(ecole);
-            //List<Student> studentsToSave = sendEmail(students);
+         System.out.println("je suisa");
+	 System.out.println(students.size());
+	 List<Student> studentsToSave = sendEmail(students);
              studentRepository.saveAll(students);
             workbook.close();
             response.put("message", "Successfully uploaded: " + fileName);
@@ -100,8 +103,10 @@ public class StudentServiceImpl implements StudentService {
         return response;
     }
     private List<Student> sendEmail(List<Student> students) {
+ 	System.out.println("je suis la");
         students.forEach(
                 s -> {
+		 System.out.println(s);
                     if (s.getCard() == null);{
                         byte[] qr = null;
                         try {
@@ -115,19 +120,21 @@ public class StudentServiceImpl implements StudentService {
                                     qr,
                                     logo
                             );
+				 System.out.println("je suis la ENF");
                             emailService.sendBadgeByEmail(
-                                    s.getEmail(),
+                                    "fulbert.missekpe@ism.edu.sn",
                                     s.getNomComplet(),
                                     pdf
                             );
                             s.setCard(qr);
                         }
                         catch (Exception e) {
+				 System.out.println(e);
                             throw new RuntimeException(e);
                         }
                     }
                 }
-        );
+        );        
         return students;
     }
 }

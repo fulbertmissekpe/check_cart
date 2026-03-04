@@ -53,3 +53,5 @@ buildNumber.properties
 heapdump/
 *.pid
 *.stream
+frontend-angular/
+.env
