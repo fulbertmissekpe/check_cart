@@ -1,20 +1,17 @@
 spring:
-  config:
-    import: optional:file:.env[.properties]
-
   application:
     name: check-card
 
   data:
-  mongodb:
-    uri: mongodb+srv://fulbertmissekpe1_db_user:Fulbert05@cluster0.f3kip6r.mongodb.net/checkcard?retryWrites=true&w=majority&appName=Cluster0
+    mongodb:
+      uri: "mongodb://checkCardAdmin:Fulbert05@localhost:27017/checkCard?authSource=checkCard"
+      #database: checkCard
 
-      
   mail:
-    host: ${MAIL_HOST}
-    port: 587
-    username: ${MAIL_USERNAME}
-    password: ${MAIL_PASSWORD}
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:tresodev@gmail.com}
+    password: ${MAIL_PASSWORD:jzzvoabugaqffgta}
     properties:
       mail:
         smtp:
@@ -25,8 +22,8 @@ spring:
 application:
   security:
     jwt:
-      secret: ${JWT_SECRET}
+      secret: ${JWT_SECRET:Kj83#kS!9dP2$Ls8Qp1@xZ4vN7mR6tY5bH3cD0eF}
       expiration-ms: 3600000
 
 server:
-  port: ${PORT:8080}
+  port: 8080

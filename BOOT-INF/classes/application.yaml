@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: check-card
+
+  data:
+    mongodb:
+      uri: mongodb://checkCardAdmin:Fulbert05@localhost:27017/checkCard?authSource=checkCard
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: tresodev@gmail.com
+    password: jzzvoabugaqffgta
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+application:
+  security:
+    jwt:
+      secret: Kj83#kS!9dP2$Ls8Qp1@xZ4vN7mR6tY5bH3cD0eF
+      expiration-ms: 3600000
+
+server:
+  port: 8080
